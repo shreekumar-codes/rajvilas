@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RAJVILĀS — Palace Hotels of India | Jaipur • Udaipur • Goa • Kerala</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='80'>🪷</text></svg>">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=Jost:wght@200;300;400;500;600&family=Tiro+Devanagari+Hindi&family=Great+Vibes&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config={theme:{extend:{colors:{ivory:'#FFFBF2',cream:'#FFF6E8',sand:'#F5E6C8',maroon:'#3D0B16',maroon2:'#6B1A2A',gold:'#C9A24B',goldlight:'#F3DFA0',golddark:'#8A6B23',emerald:'#0E3B2E',saffron:'#E67E22',ink:'#1D1410',stonewarm:'#9A8E80'},fontFamily:{serif:['"Cormorant Garamond"','serif'],sans:['Jost','sans-serif'],hindi:['"Tiro Devanagari Hindi"','serif'],script:['"Great Vibes"','cursive']},letterSpacing:{widest2:'0.35em'}}}}
+</script>
+<link rel="stylesheet" href="assets/css/site.css">
+</head>
+<body class="antialiased">
+<div class="scroll-progress" id="scrollProgress"></div>
+<div id="cursorDot"></div><div id="cursorRing"></div>
+
+<!-- PRELOADER -->
+<div id="preloader">
+<div class="text-center px-6">
+<svg class="mandala-spin mx-auto mb-4" width="80" height="80" viewBox="0 0 100 100" fill="none"><circle cx="50" cy="50" r="46" stroke="#C9A24B" stroke-width="1" stroke-dasharray="4 4"/><circle cx="50" cy="50" r="32" stroke="#F3DFA0" stroke-width="1"/><circle cx="50" cy="50" r="18" stroke="#C9A24B" stroke-width="1.2"/><path d="M50 18 C55 35 55 65 50 82 C45 65 45 35 50 18Z" stroke="#E67E22" fill="rgba(230,126,34,.15)"/><path d="M18 50 C35 45 65 45 82 50 C65 55 35 55 18 50Z" stroke="#E67E22" fill="rgba(230,126,34,.15)"/><circle cx="50" cy="50" r="5" fill="#F3DFA0"/><text x="50" y="53.5" text-anchor="middle" font-size="7" fill="#3D0B16" font-weight="bold">R</text></svg>
+<div class="hindi text-[#F3DFA0] text-2xl">नमस्ते • स्वागत है</div>
+<div class="serif text-4xl tracking-[0.2em] text-white mt-2">RAJVILĀS</div>
+<div class="text-[10px] tracking-[0.5em] text-[#C9A24B] mt-1">PALACES OF INDIA • EST. 1948</div>
+<div class="loader-line mt-7 mx-auto"><span id="loaderBar"></span></div>
+<div id="loaderPct" class="text-white/50 text-xs mt-3 tracking-[0.3em]">0%</div>
+</div>
+</div>
+
+<!-- TOPBAR -->
+<div class="hidden md:flex bg-maroon text-white/85 text-[12px] tracking-wide justify-between items-center px-8 py-2 relative z-40">
+<div class="flex items-center gap-6">
+<span class="flex items-center gap-2"><span class="text-saffron">☎</span> +91 141 408 0000</span>
+<span class="hidden lg:flex items-center gap-2"><span class="text-gold">✉</span> namaste@rajvilas.in</span>
+<span class="hidden xl:flex items-center gap-2 text-goldlight"><span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span> New Delhi <span id="istTime" class="text-white/80">--:-- IST</span> • Jaipur 32°C ☀</span>
+</div>
+<div class="flex items-center gap-4">
+<button onclick="toggleLang()" id="langBtn" class="hover:text-goldlight transition flex items-center gap-1 border border-white/20 rounded-full px-3 py-1">EN / <span class="hindi">हिं</span></button>
+<span class="w-px h-4 bg-white/20"></span>
+<div class="flex items-center gap-1"><span class="text-white/50">Currency:</span><select id="currencySelect" class="bg-transparent text-goldlight text-[12px] cursor-pointer"><option value="INR">INR ₹</option><option value="USD">USD $</option><option value="EUR">EUR €</option></select></div>
+<a href="#offers" class="bg-gradient-to-r from-saffron to-gold text-white px-3 py-1 rounded-full font-medium hover:brightness-110 transition">🪔 Diwali −30%</a>
+</div>
+</div>
+
+<!-- NAV -->
+<header id="mainNav" class="sticky top-0 z-50 transition-all duration-500 bg-gradient-to-b from-maroon/80 to-transparent">
+<div class="tricolor"></div>
+<div class="max-w-[1420px] mx-auto flex items-center justify-between px-5 md:px-8 py-3.5">
+<a href="#home" class="flex items-center gap-3 group">
+<div class="w-12 h-12 rounded-full border-2 border-gold flex items-center justify-center relative bg-maroon/60 backdrop-blur"><span class="serif text-2xl text-goldlight group-hover:text-white transition">R</span><span class="absolute -bottom-[2px] left-1/2 -translate-x-1/2 w-5 h-[3px] bg-saffron rounded-full"></span></div>
+<div><div class="logo-text serif text-[22px] leading-none tracking-[0.18em] text-white">RAJVILĀS</div><div class="text-[9px] tracking-[0.32em] text-gold mt-[3px]">JAIPUR • UDAIPUR • GOA • KERALA</div></div>
+</a>
+<nav class="hidden lg:flex items-center gap-7 text-[12.5px] tracking-[0.16em] font-light">
+<a href="#heritage" class="nav-link text-white/85 hover:text-goldlight transition">HERITAGE</a>
+<a href="#destinations" class="nav-link text-white/85 hover:text-goldlight transition">DESTINATIONS</a>
+<a href="#rooms" class="nav-link text-white/85 hover:text-goldlight transition">SUITES</a>
+<a href="#dining" class="nav-link text-white/85 hover:text-goldlight transition">DINING</a>
+<a href="#spa" class="nav-link text-white/85 hover:text-goldlight transition">AYURVEDA</a>
+<a href="#gallery" class="nav-link text-white/85 hover:text-goldlight transition">GALLERY</a>
+<a href="#offers" class="nav-link text-white/85 hover:text-goldlight transition">OFFERS</a>
+</nav>
+<div class="flex items-center gap-3">
+<button onclick="openVideo()" class="hidden md:flex items-center gap-2 text-white/80 hover:text-goldlight text-[11px] tracking-[0.2em] transition"><span class="w-9 h-9 rounded-full border border-white/30 flex items-center justify-center">▶</span> FILM</button>
+<button onclick="openBooking()" class="btn-gold px-6 md:px-8 py-3 text-[12px] tracking-[0.25em] font-medium rounded-sm">RESERVE</button>
+<button id="menuBtn" class="lg:hidden w-11 h-11 border border-white/30 flex flex-col items-center justify-center gap-[5px] rounded-sm bg-maroon/40"><span class="w-5 h-px bg-white block"></span><span class="w-5 h-px bg-gold block"></span><span class="w-5 h-px bg-white block"></span></button>
+</div>
+</div>
+</header>
+
+<!-- Mobile menu -->
+<div id="mobileMenu" class="fixed inset-0 z-[60] hidden">
+<div class="absolute inset-0 modal-bg" onclick="toggleMenu(false)"></div>
+<div class="absolute right-0 top-0 h-full w-[88%] max-w-sm bg-maroon text-white p-8 flex flex-col modal-panel overflow-y-auto">
+<div class="flex justify-between items-center mb-8"><div><div class="serif text-xl tracking-[0.25em] text-goldlight">RAJVILĀS</div><div class="hindi text-white/50 text-sm">राजविलास पैलेस</div></div><button onclick="toggleMenu(false)" class="w-10 h-10 border border-white/20 rounded-full hover:bg-white/10">✕</button></div>
+<nav class="flex flex-col gap-4 serif text-3xl font-light">
+<a href="#heritage" onclick="toggleMenu(false)" class="hover:text-goldlight transition">Heritage</a>
+<a href="#destinations" onclick="toggleMenu(false)" class="hover:text-goldlight transition">Destinations</a>
+<a href="#rooms" onclick="toggleMenu(false)" class="hover:text-goldlight transition">Suites</a>
+<a href="#dining" onclick="toggleMenu(false)" class="hover:text-goldlight transition">Dining</a>
+<a href="#spa" onclick="toggleMenu(false)" class="hover:text-goldlight transition">Ayurveda</a>
+<a href="#offers" onclick="toggleMenu(false)" class="hover:text-goldlight transition">Offers</a>
+</nav>
+<div class="gold-divider my-7"></div>
+<p class="text-white/60 text-sm font-light">Khasa Kothi Circle, MI Road<br>Jaipur 302001, Rajasthan<br><br>+91 141 408 0000</p>
+<div class="flex gap-2 mt-5"><span class="bg-white/10 rounded px-3 py-1.5 text-xs">UPI ✓</span><span class="bg-white/10 rounded px-3 py-1.5 text-xs">Visa ✓</span><span class="bg-white/10 rounded px-3 py-1.5 text-xs">Rupay ✓</span></div>
+<button onclick="toggleMenu(false);openBooking()" class="btn-saffron mt-6 py-4 tracking-[0.25em] text-sm rounded-sm">RESERVE YOUR STAY</button>
+</div>
+</div>
+
+<!-- HERO -->
+<section id="home" class="relative min-h-[104vh] -mt-[72px] flex items-end md:items-center overflow-hidden bg-maroon">
+<div class="absolute inset-0">
+<div class="hero-slide active"><img src="https://images.unsplash.com/photo-1477587458883-47145ed94245?q=80&w=2000&auto=format&fit=crop" alt="Amber Palace Jaipur"><div class="absolute inset-0 hero-gradient"></div></div>
+<div class="hero-slide"><img src="https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?q=80&w=2000&auto=format&fit=crop" alt="Goa beach"><div class="absolute inset-0 hero-gradient"></div></div>
+<div class="hero-slide"><img src="https://images.unsplash.com/photo-1548013146-72479768bada?q=80&w=2000&auto=format&fit=crop" alt="Taj Mahal Agra"><div class="absolute inset-0 hero-gradient"></div></div>
+</div>
+<div class="hidden xl:flex absolute left-7 bottom-44 z-20 flex-col items-center gap-5 text-white/60 text-[11px] tracking-[0.3em]"><span class="[writing-mode:vertical-lr]">INCREDIBLE INDIA • RAJASTHAN • GOA • KERALA</span><span class="w-px h-16 bg-gradient-to-b from-gold to-transparent"></span></div>
+<div class="hidden xl:flex absolute right-7 bottom-44 z-20 flex-col items-center gap-4">
+<div class="w-[74px] h-[74px] rounded-full border border-gold/70 flex flex-col items-center justify-center text-center backdrop-blur bg-white/5"><span class="text-2xl">🪷</span><span class="text-[8px] tracking-[0.2em] text-goldlight">HERITAGE</span></div>
+<div class="bg-white/10 backdrop-blur border border-white/20 rounded-full px-4 py-2 text-[11px] text-white/80 tracking-widest">★ 7 PALACES</div>
+</div>
+<div class="relative z-10 max-w-[1420px] mx-auto px-5 md:px-8 w-full pt-36 pb-10 md:pb-16">
+<div class="max-w-3xl">
+<div class="flex items-center gap-4 mb-5"><span class="h-px w-12 bg-saffron"></span><span id="heroKicker" class="text-goldlight text-[11px] md:text-[12px] tracking-[0.35em] transition-opacity duration-500">RAJASTHAN • EST. 1948 • <span class="hindi">पधारो सा</span></span></div>
+<h1 id="heroTitle" class="serif font-light text-white text-[44px] leading-[0.95] md:text-[88px] transition-opacity duration-500">Live Like Royalty,<br><em class="gold-text not-italic font-medium">From Jaipur to Kerala</em></h1>
+<p id="heroSub" class="text-white/75 font-light mt-6 max-w-xl text-[15px] md:text-lg leading-relaxed transition-opacity duration-500">7 heritage palaces, 540 royal suites, private lakes, Goan beaches & Kerala backwaters — with Ayurvedic spas, tiger safaris and Michelin-grade Indian kitchens.</p>
+<div class="flex items-center gap-3 mt-5"><span class="hindi text-goldlight/90 text-lg">शाही ठहरने का असली अनुभव</span><span class="text-white/30">•</span><span class="text-white/60 text-sm font-light">The true royal stay</span></div>
+<div class="flex flex-wrap items-center gap-4 mt-7">
+<button onclick="openBooking()" class="btn-saffron px-9 py-4 text-[12px] tracking-[0.25em] rounded-sm font-medium">CHECK AVAILABILITY</button>
+<a href="#destinations" class="px-9 py-4 text-[12px] tracking-[0.25em] border border-white/40 text-white hover:bg-white hover:text-maroon transition rounded-sm backdrop-blur-sm">EXPLORE INDIA</a>
+</div>
+<div class="flex items-center gap-4 mt-8 text-white/80 text-sm font-light flex-wrap"><span class="flex text-gold tracking-tight">★★★★★</span><span><strong class="text-white font-medium">4.9</strong> · 18,240 reviews</span><span class="hidden sm:inline w-1 h-1 rounded-full bg-white/40"></span><span class="hidden sm:inline">Incredible India Award 2026 • World's Best Heritage Hotel</span></div>
+</div>
+<div class="flex items-center justify-between mt-10 md:mt-12">
+<div class="flex items-center gap-3"><button onclick="heroGo(0)" class="hero-dot h-[3px] w-12 bg-gold transition-all rounded-full"></button><button onclick="heroGo(1)" class="hero-dot h-[3px] w-8 bg-white/30 rounded-full"></button><button onclick="heroGo(2)" class="hero-dot h-[3px] w-8 bg-white/30 rounded-full"></button></div>
+<div class="flex items-center gap-3"><button onclick="heroPrev()" class="w-12 h-12 rounded-full border border-white/30 text-white hover:bg-gold hover:border-gold transition flex items-center justify-center">←</button><button onclick="heroNext()" class="w-12 h-12 rounded-full border border-white/30 text-white hover:bg-gold hover:border-gold transition flex items-center justify-center">→</button></div>
+</div>
+</div>
+<div class="absolute bottom-5 left-1/2 -translate-x-1/2 z-20 hidden md:flex flex-col items-center gap-2 text-white/50 text-[10px] tracking-[0.35em]"><span>SCROLL</span><span class="w-px h-10 bg-gradient-to-b from-white/50 to-transparent animate-pulse"></span></div>
+</section>
+
+<!-- BOOKING BAR -->
+<div class="relative z-30 max-w-[1240px] mx-auto px-5 md:px-8 -mt-20 md:-mt-16">
+<div class="bg-white rounded-xl shadow-[0_30px_80px_-20px_rgba(61,11,22,.45)] border border-gold/40 p-3 md:p-4">
+<div class="grid grid-cols-2 lg:grid-cols-[1.1fr_1fr_1fr_1.3fr_auto] gap-3">
+<label class="bg-cream rounded-lg p-4 border border-transparent hover:border-gold/60 transition cursor-pointer col-span-2 lg:col-span-1">
+<span class="text-[10px] tracking-[0.3em] text-stonewarm">DESTINATION • <span class="hindi">स्थान</span></span>
+<select id="destSelect" class="w-full bg-transparent serif text-xl mt-1 outline-none text-maroon font-medium cursor-pointer"><option>Jaipur — Pink City Palace</option><option>Udaipur — Lake Pichola Palace</option><option>Goa — Beach Resort & Spa</option><option>Kerala — Backwater Retreat</option><option>Agra — Taj View Haveli</option><option>Jaisalmer — Desert Camp</option></select>
+<span class="text-xs text-golddark">7 palaces across India</span>
+</label>
+<label class="bg-cream rounded-lg p-4 border border-transparent hover:border-gold/60 transition cursor-pointer"><span class="text-[10px] tracking-[0.3em] text-stonewarm">CHECK-IN</span><input id="checkin" type="text" placeholder="Select date" class="w-full bg-transparent serif text-xl mt-1 outline-none placeholder:text-gray-400"><span id="checkinDay" class="text-xs text-golddark">—</span></label>
+<label class="bg-cream rounded-lg p-4 border border-transparent hover:border-gold/60 transition cursor-pointer"><span class="text-[10px] tracking-[0.3em] text-stonewarm">CHECK-OUT</span><input id="checkout" type="text" placeholder="Select date" class="w-full bg-transparent serif text-xl mt-1 outline-none placeholder:text-gray-400"><span id="checkoutDay" class="text-xs text-golddark">—</span></label>
+<div class="col-span-2 lg:col-span-1 relative">
+<button id="guestBtn" class="w-full text-left bg-cream rounded-lg p-4 border border-transparent hover:border-gold/60 transition h-full"><span class="text-[10px] tracking-[0.3em] text-stonewarm">GUESTS & ROOMS</span><div id="guestSummary" class="serif text-xl mt-1">2 Adults · 0 Child · 1 Room</div><span id="nightsLabel" class="text-xs text-golddark">Select dates to see nights</span></button>
+<div id="guestPanel" class="hidden absolute top-[105%] left-0 right-0 lg:right-auto lg:w-[320px] bg-white rounded-xl shadow-2xl border p-5 z-40">
+<div class="flex items-center justify-between py-3 border-b"><div><div class="font-medium">Adults</div><div class="text-xs text-gray-500">Ages 13+</div></div><div class="flex items-center gap-3"><button onclick="stepGuest('adults',-1)" class="w-8 h-8 rounded-full border hover:bg-maroon hover:text-white transition">−</button><span id="cAdults" class="w-6 text-center font-medium">2</span><button onclick="stepGuest('adults',1)" class="w-8 h-8 rounded-full border hover:bg-maroon hover:text-white transition">+</button></div></div>
+<div class="flex items-center justify-between py-3 border-b"><div><div class="font-medium">Children</div><div class="text-xs text-gray-500">Ages 0-12</div></div><div class="flex items-center gap-3"><button onclick="stepGuest('children',-1)" class="w-8 h-8 rounded-full border hover:bg-maroon hover:text-white transition">−</button><span id="cChildren" class="w-6 text-center font-medium">0</span><button onclick="stepGuest('children',1)" class="w-8 h-8 rounded-full border hover:bg-maroon hover:text-white transition">+</button></div></div>
+<div class="flex items-center justify-between py-3"><div><div class="font-medium">Rooms</div><div class="text-xs text-gray-500">Max 4 per booking</div></div><div class="flex items-center gap-3"><button onclick="stepGuest('rooms',-1)" class="w-8 h-8 rounded-full border hover:bg-maroon hover:text-white transition">−</button><span id="cRooms" class="w-6 text-center font-medium">1</span><button onclick="stepGuest('rooms',1)" class="w-8 h-8 rounded-full border hover:bg-maroon hover:text-white transition">+</button></div></div>
+<button onclick="toggleGuests(false)" class="w-full mt-2 bg-maroon text-white py-3 rounded tracking-[0.2em] text-xs hover:bg-gold hover:text-maroon transition">DONE</button>
+</div>
+</div>
+<button onclick="searchAvailability()" class="col-span-2 lg:col-span-1 btn-gold rounded-lg px-8 py-4 lg:py-0 text-[13px] tracking-[0.22em] font-medium min-h-[76px]">SEARCH<br class="hidden lg:block"><span class="serif italic font-light tracking-normal text-sm opacity-80">best rate • UPI accepted</span></button>
+</div>
+</div>
+<div class="flex flex-wrap justify-center gap-x-8 gap-y-2 mt-4 text-[11px] tracking-[0.18em] text-ink/60"><span>✓ FREE CANCELLATION 48H</span><span>✓ PAY AT HOTEL / UPI</span><span>✓ VISA ASSISTANCE FOR FOREIGNERS</span><span class="hidden md:inline">✓ PURE VEG & JAIN OPTIONS</span></div>
+</div>
+
+<!-- MARQUEE -->
+<div class="mt-10 border-y border-gold/40 bg-white/70 py-3.5 overflow-hidden">
+<div class="marquee-track text-[12px] tracking-[0.3em] text-maroon/70"><div class="flex items-center gap-10 pr-10" id="marqueeA"></div><div class="flex items-center gap-10 pr-10" id="marqueeB"></div></div>
+</div>
+
+<!-- HERITAGE -->
+<section id="heritage" class="max-w-[1420px] mx-auto px-5 md:px-8 py-18 md:py-24 pt-20 md:pt-28">
+<div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+<div class="relative reveal">
+<div class="grid grid-cols-12 gap-4">
+<div class="col-span-7 img-zoom rounded shadow-2xl arch overflow-hidden"><img src="https://images.unsplash.com/photo-1599661046289-e31897846e41?q=80&w=900&auto=format&fit=crop" class="h-[420px] md:h-[560px] w-full object-cover" alt="Hawa Mahal Jaipur"></div>
+<div class="col-span-5 flex flex-col gap-4 pt-10">
+<div class="img-zoom rounded shadow-xl"><img src="https://images.unsplash.com/photo-1585937421612-70a008356fbe?q=80&w=700&auto=format&fit=crop" class="h-[200px] md:h-[260px] w-full object-cover rounded" alt="Indian thali"></div>
+<div class="img-zoom rounded shadow-xl relative"><img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?q=80&w=700&auto=format&fit=crop" class="h-[200px] md:h-[260px] w-full object-cover rounded" alt="Ayurveda spa"><span class="absolute bottom-3 left-3 bg-maroon/85 text-goldlight text-[10px] tracking-[0.2em] px-3 py-1.5 rounded-full">AYURVEDA • KERALA</span></div>
+</div>
+</div>
+<div class="absolute -bottom-6 left-6 md:left-10 bg-maroon text-white rounded p-6 shadow-2xl flex items-center gap-5 border border-gold/50">
+<div class="text-center"><div class="serif text-5xl text-goldlight">78</div><div class="hindi text-white/60 text-sm">वर्ष</div></div>
+<div class="text-[11px] tracking-[0.22em] leading-relaxed text-white/80">YEARS OF<br>ROYAL HOSPITALITY<br><span class="text-gold">★★★★★ INCREDIBLE INDIA</span></div>
+</div>
+</div>
+<div class="reveal reveal-delay-1 lg:pl-4">
+<div class="flex items-center gap-4 mb-5"><span class="h-px w-10 bg-saffron"></span><span class="text-[11px] tracking-[0.4em] text-golddark">OUR HERITAGE • SINCE 1948 • <span class="hindi">विरासत</span></span></div>
+<h2 class="serif font-light text-[40px] md:text-[58px] leading-[1.02] text-maroon">From Rajputana forts to <em class="gold-text font-medium">Kerala backwaters</em></h2>
+<p class="mt-6 text-[15px] md:text-[17px] font-light leading-relaxed text-ink/70">Born as a Jaipur haveli in 1948, Rajvilās is now India's most loved palace collection — restored forts, lake palaces, Goan beach villas and Kettuvallam houseboats. Every stay includes daily breakfast, yoga at sunrise and evening aarti or folk music.</p>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-6 mt-10 border-t border-b border-gold/30 py-7">
+<div><div class="serif text-4xl text-maroon"><span class="counter" data-target="7">0</span></div><div class="text-[11px] tracking-[0.18em] text-stonewarm mt-1">PALACES & RESORTS</div></div>
+<div><div class="serif text-4xl text-maroon"><span class="counter" data-target="540">0</span></div><div class="text-[11px] tracking-[0.18em] text-stonewarm mt-1">ROYAL SUITES</div></div>
+<div><div class="serif text-4xl text-maroon"><span class="counter" data-target="12">0</span></div><div class="text-[11px] tracking-[0.18em] text-stonewarm mt-1">AWARD RESTAURANTS</div></div>
+<div><div class="serif text-4xl text-maroon">4.9<span class="text-gold text-2xl">★</span></div><div class="text-[11px] tracking-[0.18em] text-stonewarm mt-1">18K REVIEWS</div></div>
+</div>
+<div class="flex flex-wrap gap-4 mt-8"><a href="#rooms" class="btn-gold px-8 py-4 text-[12px] tracking-[0.25em] rounded-sm">DISCOVER SUITES</a><button onclick="openVideo()" class="btn-outline px-8 py-4 text-[12px] tracking-[0.25em] rounded-sm flex items-center gap-2"><span class="w-6 h-6 rounded-full bg-maroon text-white flex items-center justify-center text-[10px]">▶</span> OUR STORY — 2 MIN</button></div>
+<div class="flex items-center gap-4 mt-8"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200&auto=format&fit=crop" class="w-12 h-12 rounded-full object-cover border-2 border-sand" alt="Chairman"><div><div class="serif italic text-lg text-maroon">"Atithi Devo Bhava — the guest is god."</div><div class="text-xs tracking-[0.2em] text-stonewarm">MAHARAJA ARJUN SINGH • CHAIRMAN</div></div></div>
+</div>
+</div>
+</section>
+
+<!-- DESTINATIONS -->
+<section id="destinations" class="bg-gradient-to-b from-cream to-ivory border-y border-sand py-20 md:py-28 jaali">
+<div class="max-w-[1420px] mx-auto px-5 md:px-8">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-6 reveal">
+<div><div class="flex items-center gap-4 mb-4"><span class="h-px w-10 bg-saffron"></span><span class="text-[11px] tracking-[0.4em] text-golddark">DESTINATIONS • <span class="hindi">यात्रा</span></span></div>
+<h2 class="serif font-light text-[38px] md:text-[56px] text-maroon leading-tight">One brand, <em class="gold-text font-medium">six Indias</em></h2></div>
+<p class="text-ink/60 font-light max-w-sm">Pink cities, blue lakes, golden deserts, green backwaters. Pick your India — we handle trains, flights & drivers.</p>
+</div>
+<div id="destGrid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-12"></div>
+</div>
+</section>
+
+<!-- ROOMS -->
+<section id="rooms" class="bg-white py-20 md:py-28 relative overflow-hidden">
+<div class="absolute top-8 left-1/2 -translate-x-1/2 serif text-[17vw] leading-none text-cream select-none pointer-events-none font-medium">शाही</div>
+<div class="max-w-[1420px] mx-auto px-5 md:px-8 relative">
+<div class="text-center max-w-2xl mx-auto reveal">
+<div class="flex items-center justify-center gap-4 mb-4"><span class="h-px w-10 bg-gold"></span><span class="text-[11px] tracking-[0.4em] text-golddark">ROOMS & SUITES</span><span class="h-px w-10 bg-gold"></span></div>
+<h2 class="serif font-light text-[38px] md:text-[56px] text-maroon leading-tight">Sleep like a <em class="gold-text font-medium">Maharaja</em></h2>
+<p class="text-ink/60 font-light mt-4">Live INR rates update with your dates & destination. All rates include breakfast, yoga & heritage walk.</p>
+<div id="staySummary" class="inline-flex items-center gap-2 mt-5 bg-cream border border-gold/40 rounded-full px-5 py-2 text-sm text-maroon/80">No dates selected — <button onclick="document.getElementById('checkin').focus()" class="underline text-golddark">add dates for live totals</button></div>
+</div>
+<div class="flex flex-wrap justify-center gap-3 mt-10 reveal">
+<button data-filter="all" class="room-filter tab-btn active px-6 py-2.5 text-[12px] tracking-[0.2em] border border-gray-300 rounded-full transition hover:border-maroon">ALL STAYS</button>
+<button data-filter="heritage" class="room-filter tab-btn px-6 py-2.5 text-[12px] tracking-[0.2em] border border-gray-300 rounded-full transition hover:border-maroon">HERITAGE ROOMS</button>
+<button data-filter="suite" class="room-filter tab-btn px-6 py-2.5 text-[12px] tracking-[0.2em] border border-gray-300 rounded-full transition hover:border-maroon">PALACE SUITES</button>
+<button data-filter="villa" class="room-filter tab-btn px-6 py-2.5 text-[12px] tracking-[0.2em] border border-gray-300 rounded-full transition hover:border-maroon">VILLAS • TENTS • HOUSEBOAT</button>
+</div>
+<div id="roomsGrid" class="grid md:grid-cols-2 xl:grid-cols-3 gap-7 mt-12"></div>
+</div>
+</section>
+
+<!-- PARALLAX TAJ -->
+<section class="relative py-24 md:py-32 overflow-hidden">
+<img src="https://images.unsplash.com/photo-1524492412937-b28074a5d7da?q=80&w=2000&auto=format&fit=crop" class="absolute inset-0 w-full h-[130%] object-cover -top-[15%]" id="parallaxImg" alt="Taj Mahal">
+<div class="absolute inset-0 bg-gradient-to-b from-maroon/70 via-maroon/40 to-[#1A050B]/85"></div>
+<div class="relative max-w-4xl mx-auto text-center px-6 reveal">
+<div class="text-goldlight text-[11px] tracking-[0.45em] mb-4">AGRA • SUNRISE AT THE TAJ • <span class="hindi">ताज महल</span></div>
+<div class="script text-3xl text-goldlight/90">Mohabbat ki nishaani</div>
+<h3 class="serif font-light text-white text-[36px] md:text-[60px] leading-[1.05] mt-2">"See the Taj at dawn —<br>before the world <em class="text-goldlight">wakes up."</em></h3>
+<div class="gold-divider w-40 mx-auto my-8"></div>
+<div class="flex flex-wrap justify-center gap-8 text-white/85 text-sm font-light tracking-wide"><span>🕌 2 hrs from Jaipur by Vande Bharat</span><span>📸 Private photographer included</span><span>☕ Chai at Mehtab Bagh</span></div>
+<div class="flex flex-wrap justify-center gap-4 mt-10"><button onclick="openBooking()" class="bg-gold text-maroon px-10 py-4 text-[12px] tracking-[0.25em] font-semibold rounded-sm hover:bg-white transition card-shine">BOOK TAJ SUNRISE TOUR — ₹3,500</button><button onclick="showToast('Concierge','Agra day-trip brochure sent on WhatsApp (demo).','gold')" class="border border-white/40 text-white px-8 py-4 text-[12px] tracking-[0.25em] rounded-sm hover:bg-white hover:text-maroon transition">GET ITINERARY</button></div>
+</div>
+</section>
+
+<!-- EXPERIENCES -->
+<section id="experiences" class="max-w-[1420px] mx-auto px-5 md:px-8 py-20 md:py-28">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-6 reveal">
+<div><div class="flex items-center gap-4 mb-4"><span class="h-px w-10 bg-saffron"></span><span class="text-[11px] tracking-[0.4em] text-golddark">EXPERIENCES • <span class="hindi">अनुभव</span></span></div>
+<h2 class="serif font-light text-[38px] md:text-[56px] text-maroon leading-tight">Days, <em class="gold-text font-medium">beautifully Indian</em></h2></div>
+<p class="text-ink/60 font-light max-w-sm">Tiger safaris, Ganga aartis, cooking with khansamas & royal weddings. Tap any ritual to reserve.</p>
+</div>
+<div id="expGrid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-12"></div>
+</section>
+
+<!-- DINING -->
+<section id="dining" class="bg-maroon text-white py-20 md:py-28 relative overflow-hidden">
+<div class="absolute inset-0 jaali opacity-20"></div>
+<div class="absolute -top-10 right-0 serif text-[15vw] leading-none text-white/[0.04] select-none pointer-events-none">स्वाद</div>
+<div class="max-w-[1420px] mx-auto px-5 md:px-8 relative">
+<div class="text-center reveal"><div class="flex items-center justify-center gap-4 mb-4"><span class="h-px w-10 bg-gold"></span><span class="text-[11px] tracking-[0.4em] text-goldlight">GASTRONOMY • <span class="hindi">भोजन</span></span><span class="h-px w-10 bg-gold"></span></div>
+<h2 class="serif font-light text-[38px] md:text-[56px] leading-tight">From thalis to <em class="gold-text font-medium">tandoors</em></h2>
+<p class="text-white/60 font-light mt-3">Pure-veg, Jain, halal & vegan kitchens • All restaurants FSSAI 5-star rated</p></div>
+<div class="flex flex-wrap justify-center gap-3 mt-10 reveal">
+<button onclick="switchDining(0)" class="dining-tab tab-btn active px-7 py-3 text-[12px] tracking-[0.18em] border border-white/25 rounded-full transition">RAJWADA • ROYAL THALI</button>
+<button onclick="switchDining(1)" class="dining-tab tab-btn px-7 py-3 text-[12px] tracking-[0.18em] border border-white/25 rounded-full transition">TANDOOR NIGHTS • MUGHLAI</button>
+<button onclick="switchDining(2)" class="dining-tab tab-btn px-7 py-3 text-[12px] tracking-[0.18em] border border-white/25 rounded-full transition">SAGAR • GOAN & KERALA</button>
+</div>
+<div class="grid lg:grid-cols-2 gap-10 mt-12 items-center">
+<div class="rounded overflow-hidden shadow-2xl reveal img-zoom border border-gold/30"><img id="diningImg" src="https://images.unsplash.com/photo-1585937421612-70a008356fbe?q=80&w=1200&auto=format&fit=crop" class="w-full h-[380px] md:h-[500px] object-cover" alt="Dining"></div>
+<div class="reveal reveal-delay-1">
+<div id="diningStars" class="text-gold tracking-[0.2em] text-sm">★ TIMES FOOD AWARD 2026 • PURE VEG OPTIONS</div>
+<h3 id="diningName" class="serif text-4xl md:text-5xl font-light mt-3">Rajwada — Royal Rajasthani</h3>
+<p id="diningDesc" class="text-white/65 font-light mt-4 leading-relaxed"></p>
+<div id="diningMenu" class="mt-6 space-y-3 text-sm"></div>
+<div class="flex flex-wrap gap-6 mt-6 text-[12px] tracking-[0.15em] text-white/60"><span id="diningHours"></span><span>DRESS: SMART • KURTAS WELCOMED</span></div>
+<div class="bg-white/[0.06] border border-white/10 rounded p-5 mt-8">
+<div class="text-[11px] tracking-[0.3em] text-goldlight mb-4">RESERVE A TABLE — INSTANT CONFIRMATION ON WHATSAPP</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+<input id="tableDate" type="date" class="bg-white text-maroon rounded px-3 py-3 text-sm outline-none">
+<select id="tableTime" class="bg-white text-maroon rounded px-3 py-3 text-sm"><option>13:00</option><option>19:00</option><option>19:30</option><option>20:00</option><option>20:30</option><option>21:00</option></select>
+<select id="tableGuests" class="bg-white text-maroon rounded px-3 py-3 text-sm"><option>2 guests</option><option>1 guest</option><option>4 guests</option><option>6 guests</option><option>10+ family</option></select>
+<button onclick="reserveTable()" class="bg-gold text-maroon rounded font-semibold text-[12px] tracking-[0.15em] hover:bg-white transition py-3">BOOK</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- SPA AYURVEDA -->
+<section id="spa" class="max-w-[1420px] mx-auto px-5 md:px-8 py-20 md:py-28">
+<div class="grid lg:grid-cols-2 gap-12 items-center">
+<div class="reveal order-2 lg:order-1">
+<div class="flex items-center gap-4 mb-4"><span class="h-px w-10 bg-emerald"></span><span class="text-[11px] tracking-[0.4em] text-emerald">AYURVEDA & YOGA • <span class="hindi">आयुर्वेद</span></span></div>
+<h2 class="serif font-light text-[38px] md:text-[56px] text-maroon leading-[1.05]">Heal the <em class="gold-text font-medium">Ayurvedic way</em></h2>
+<p class="text-ink/60 font-light mt-5 leading-relaxed">NABH-certified vaidyas, Kottakal oils, Himalayan salt caves & sunrise yoga on the lake ghat. Complimentary yoga + pranayama daily 6:30 AM for all guests.</p>
+<div class="mt-8 space-y-4" id="spaList"></div>
+<div class="flex flex-wrap gap-4 mt-8"><button onclick="bookSpa()" class="btn-gold px-8 py-4 text-[12px] tracking-[0.25em] rounded-sm">BOOK RITUAL</button><button onclick="openDosha()" class="btn-outline px-8 py-4 text-[12px] tracking-[0.25em] rounded-sm">✦ FIND YOUR DOSHA — 30 SEC</button></div>
+</div>
+<div class="relative reveal reveal-delay-1 order-1 lg:order-2">
+<div class="img-zoom rounded shadow-2xl arch overflow-hidden"><img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?q=80&w=1200&auto=format&fit=crop" class="w-full h-[440px] md:h-[580px] object-cover" alt="Ayurveda"></div>
+<div class="absolute bottom-6 right-6 bg-white/95 backdrop-blur rounded p-5 shadow-xl border border-sand max-w-[250px]"><div class="text-[10px] tracking-[0.3em] text-golddark">SIGNATURE • KERALA</div><div class="serif text-2xl text-maroon leading-tight mt-1">Abhyanga + Shirodhara</div><div class="text-sm text-ink/60 mt-1">90 min • <span class="font-medium text-maroon" id="spaHeroPrice">₹4,999</span></div><button onclick="bookSpa(0)" class="mt-3 text-[11px] tracking-[0.25em] text-golddark underline underline-offset-4">RESERVE →</button></div>
+<div class="absolute top-6 left-6 bg-emerald text-white rounded-full px-4 py-2 text-[11px] tracking-[0.2em] shadow-lg">🌿 100% HERBAL • CERTIFIED VAIDYAS</div>
+</div>
+</div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery" class="bg-white border-y border-sand py-20 md:py-28">
+<div class="max-w-[1420px] mx-auto px-5 md:px-8">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-6 reveal">
+<div><div class="flex items-center gap-4 mb-4"><span class="h-px w-10 bg-gold"></span><span class="text-[11px] tracking-[0.4em] text-golddark">GALLERY • <span class="hindi">झलक</span></span></div>
+<h2 class="serif font-light text-[38px] md:text-[56px] text-maroon">Postcards from <em class="gold-text font-medium">Rajvilās</em></h2></div>
+<div class="flex gap-2 flex-wrap"><button onclick="filterGallery('all')" class="gal-filter tab-btn active px-5 py-2 text-[11px] tracking-[0.2em] border border-gray-300 rounded-full">ALL</button><button onclick="filterGallery('palace')" class="gal-filter tab-btn px-5 py-2 text-[11px] tracking-[0.2em] border border-gray-300 rounded-full">PALACES</button><button onclick="filterGallery('rooms')" class="gal-filter tab-btn px-5 py-2 text-[11px] tracking-[0.2em] border border-gray-300 rounded-full">SUITES</button><button onclick="filterGallery('food')" class="gal-filter tab-btn px-5 py-2 text-[11px] tracking-[0.2em] border border-gray-300 rounded-full">FOOD</button><button onclick="filterGallery('culture')" class="gal-filter tab-btn px-5 py-2 text-[11px] tracking-[0.2em] border border-gray-300 rounded-full">CULTURE</button></div>
+</div>
+<div id="galleryGrid" class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-10 auto-rows-[180px] md:auto-rows-[220px]"></div>
+</div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="max-w-[1100px] mx-auto px-5 md:px-8 py-20 md:py-28 text-center">
+<div class="reveal"><div class="flex items-center justify-center gap-4 mb-4"><span class="h-px w-10 bg-gold"></span><span class="text-[11px] tracking-[0.4em] text-golddark">GUEST STORIES • <span class="hindi">मेहमान</span></span><span class="h-px w-10 bg-gold"></span></div>
+<h2 class="serif font-light text-[38px] md:text-[54px] text-maroon">Loved across <em class="gold-text font-medium">Bharat & beyond</em></h2></div>
+<div class="relative mt-12 reveal overflow-hidden" id="testiWrap"><div id="testiTrack" class="testi-track flex"></div>
+<div class="flex items-center justify-center gap-4 mt-8"><button onclick="testiMove(-1)" class="w-11 h-11 rounded-full border border-gray-300 hover:bg-maroon hover:text-white hover:border-maroon transition">←</button><div id="testiDots" class="flex gap-2"></div><button onclick="testiMove(1)" class="w-11 h-11 rounded-full border border-gray-300 hover:bg-maroon hover:text-white hover:border-maroon transition">→</button></div>
+</div>
+</section>
+
+<!-- OFFERS -->
+<section id="offers" class="bg-gradient-to-br from-[#1A050B] via-maroon to-maroon2 text-white py-20 md:py-28 relative overflow-hidden">
+<div class="absolute inset-0 opacity-[0.14]"><img src="https://images.unsplash.com/photo-1571115764595-644a1f56b58c?q=80&w=1800&auto=format&fit=crop" class="w-full h-full object-cover" alt=""></div>
+<div class="absolute top-6 left-1/2 -translate-x-1/2 flex gap-6 text-3xl opacity-80"><span class="diya">🪔</span><span class="diya" style="animation-delay:.4s">🪔</span><span class="diya" style="animation-delay:.8s">🪔</span><span class="diya" style="animation-delay:1.2s">🪔</span><span class="diya" style="animation-delay:1.6s">🪔</span></div>
+<div class="max-w-[1420px] mx-auto px-5 md:px-8 relative pt-6">
+<div class="flex flex-col lg:flex-row justify-between gap-8 items-start lg:items-end reveal">
+<div><div class="flex items-center gap-4 mb-4"><span class="h-px w-10 bg-gold"></span><span class="text-[11px] tracking-[0.4em] text-goldlight">FESTIVE OFFERS • <span class="hindi">दीपावली</span></span></div>
+<h2 class="serif font-light text-[38px] md:text-[56px] leading-tight">Diwali in a palace, <em class="gold-text font-medium">for less</em></h2>
+<p class="text-white/60 font-light mt-2">Use code <span class="bg-gold text-maroon px-2 py-0.5 rounded font-semibold tracking-widest">DIWALI30</span> for 30% off • Extra 10% on UPI</p></div>
+<div class="flex items-center gap-3"><span class="text-[11px] tracking-[0.3em] text-white/60 mr-2">DIWALI<br>ENDS IN</span>
+<div class="offer-count-box rounded px-4 py-3 text-center min-w-[70px]"><div id="cdD" class="serif text-3xl text-goldlight">00</div><div class="text-[10px] tracking-[0.25em] text-white/60">DAYS</div></div>
+<div class="offer-count-box rounded px-4 py-3 text-center min-w-[70px]"><div id="cdH" class="serif text-3xl text-goldlight">00</div><div class="text-[10px] tracking-[0.25em] text-white/60">HRS</div></div>
+<div class="offer-count-box rounded px-4 py-3 text-center min-w-[70px]"><div id="cdM" class="serif text-3xl text-goldlight">00</div><div class="text-[10px] tracking-[0.25em] text-white/60">MIN</div></div>
+<div class="offer-count-box rounded px-4 py-3 text-center min-w-[70px]"><div id="cdS" class="serif text-3xl text-saffron">00</div><div class="text-[10px] tracking-[0.25em] text-white/60">SEC</div></div>
+</div>
+</div>
+<div class="grid md:grid-cols-3 gap-6 mt-12" id="offersGrid"></div>
+</div>
+</section>
+
+<!-- PROPERTIES / LOCATION -->
+<section id="location" class="max-w-[1420px] mx-auto px-5 md:px-8 py-20 md:py-28">
+<div class="grid lg:grid-cols-5 gap-10">
+<div class="lg:col-span-2 reveal">
+<div class="flex items-center gap-4 mb-4"><span class="h-px w-10 bg-saffron"></span><span class="text-[11px] tracking-[0.4em] text-golddark">FIND US • <span class="hindi">पता</span></span></div>
+<h2 class="serif font-light text-[38px] md:text-[52px] text-maroon leading-tight">7 palaces,<br><em class="gold-text font-medium">one promise</em></h2>
+<p class="text-ink/60 font-light mt-4">Flagship on MI Road, Jaipur. Free valet, railway pickup & airport transfers from ₹2,200.</p>
+<div class="mt-6 space-y-2" id="distList"></div>
+<div id="distDetail" class="mt-5 bg-cream border border-gold/40 rounded-lg p-5 text-sm"></div>
+</div>
+<div class="lg:col-span-3 relative rounded overflow-hidden shadow-2xl reveal reveal-delay-1 min-h-[480px] group">
+<img id="propImg" src="https://images.unsplash.com/photo-1477587458883-47145ed94245?q=80&w=1400&auto=format&fit=crop" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition duration-[2s]" alt="Property">
+<div class="absolute inset-0 bg-gradient-to-t from-[#1A050B]/80 via-transparent to-transparent"></div>
+<div class="absolute top-5 left-5 flex gap-2 flex-wrap" id="propTabs"></div>
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center"><span class="relative flex h-6 w-6"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-saffron opacity-75"></span><span class="relative inline-flex rounded-full h-6 w-6 bg-saffron border-4 border-white shadow-xl"></span></span><div id="propPin" class="mt-3 bg-white rounded-full px-5 py-2 text-[12px] tracking-[0.15em] font-medium shadow-xl whitespace-nowrap">★ RAJVILĀS JAIPUR • PINK CITY</div></div>
+<div class="absolute bottom-5 left-5 right-5 flex flex-wrap gap-2" id="propChips"></div>
+</div>
+</div>
+</section>
+
+<!-- FESTIVALS -->
+<section class="bg-cream border-y border-sand py-16 overflow-hidden">
+<div class="max-w-[1420px] mx-auto px-5 md:px-8">
+<div class="flex items-center justify-between reveal"><h3 class="serif text-3xl md:text-4xl text-maroon font-light">Celebrate with us <span class="hindi text-xl text-golddark">• त्योहार</span></h3><div class="text-xs tracking-[0.25em] text-stonewarm hidden md:block">SCROLL →</div></div>
+<div id="festStrip" class="flex gap-5 mt-8 overflow-x-auto no-scrollbar pb-2"></div>
+</div>
+</section>
+
+<!-- FAQ -->
+<section class="max-w-[920px] mx-auto px-5 md:px-8 py-20 md:py-24">
+<div class="text-center reveal"><div class="text-[11px] tracking-[0.4em] text-golddark mb-3">GOOD TO KNOW • <span class="hindi">जानकारी</span></div><h2 class="serif font-light text-[36px] md:text-[50px] text-maroon">Questions, <em class="gold-text font-medium">answered</em></h2></div>
+<div id="faqList" class="mt-10 space-y-3"></div>
+</section>
+
+<!-- CTA -->
+<section class="mx-5 md:mx-8 mb-20 rounded-xl overflow-hidden relative reveal">
+<img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?q=80&w=2000&auto=format&fit=crop" class="absolute inset-0 w-full h-full object-cover" alt="Indian wedding">
+<div class="absolute inset-0 bg-gradient-to-r from-[#1A050B]/90 via-maroon/70 to-maroon/20"></div>
+<div class="relative p-10 md:p-16 max-w-2xl">
+<div class="text-goldlight text-[11px] tracking-[0.4em]">RAJVILĀS CIRCLE • EXTRA 10% OFF + FREE UPGRADE</div>
+<h3 class="serif font-light text-white text-[38px] md:text-[56px] leading-[1.02] mt-4">Your palace suite is<br>already waiting. <span class="hindi text-3xl md:text-4xl text-goldlight">पधारो सा!</span></h3>
+<p class="text-white/70 font-light mt-4">Join free — member rates, 2 PM checkout, birthday mithai box & early Diwali sale access.</p>
+<div class="flex flex-col sm:flex-row gap-3 mt-8 max-w-lg"><input id="ctaEmail" type="email" placeholder="Your email / mobile" class="flex-1 bg-white/10 border border-white/25 rounded px-5 py-4 text-white placeholder:text-white/50 outline-none focus:border-gold backdrop-blur"><button onclick="joinCircle()" class="bg-gold text-maroon px-8 py-4 text-[12px] tracking-[0.25em] font-semibold rounded hover:bg-white transition whitespace-nowrap">JOIN FREE</button></div>
+<div class="text-white/40 text-xs mt-3">No spam. 2,40,000+ members across India. UPI • Cards • Netbanking.</div>
+</div>
+</section>
+
+<!-- FOOTER -->
+<footer id="contact" class="bg-[#15040A] text-white pt-16 pb-8">
+<div class="tricolor"></div>
+<div class="max-w-[1420px] mx-auto px-5 md:px-8 pt-12">
+<div class="grid md:grid-cols-2 lg:grid-cols-4 gap-10 pb-12 border-b border-white/10">
+<div><div class="flex items-center gap-3"><div class="w-10 h-10 rounded-full border border-gold flex items-center justify-center serif text-xl text-goldlight">R</div><div><div class="serif tracking-[0.2em] text-lg">RAJVILĀS</div><div class="text-[9px] tracking-[0.3em] text-gold">PALACES OF INDIA</div></div></div>
+<p class="text-white/55 font-light text-sm mt-5 leading-relaxed">Heritage palace hotels in Jaipur, Udaipur, Agra, Jaisalmer, Goa & Kerala. Incredible India • FHRAI • IATA accredited.</p>
+<div class="flex gap-2 mt-5"><a href="#" onclick="showToast('Social','Opening Instagram (demo)');return false;" class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-gold hover:text-maroon hover:border-gold transition text-xs font-semibold">IG</a><a href="#" onclick="showToast('Social','Opening YouTube (demo)');return false;" class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-gold hover:text-maroon hover:border-gold transition text-xs font-semibold">YT</a><a href="#" onclick="showToast('Social','Opening X (demo)');return false;" class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-gold hover:text-maroon hover:border-gold transition text-xs font-semibold">X</a><a href="#" onclick="showToast('WhatsApp','+91 98290 00000 — chat starting (demo)');return false;" class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-emerald-500 hover:border-emerald-500 transition text-sm">✆</a></div>
+<div class="flex gap-2 mt-4 text-[11px]"><span class="bg-white/10 rounded px-2 py-1">UPI</span><span class="bg-white/10 rounded px-2 py-1">RuPay</span><span class="bg-white/10 rounded px-2 py-1">Visa</span><span class="bg-white/10 rounded px-2 py-1">Mastercard</span></div></div>
+<div><div class="text-[11px] tracking-[0.35em] text-goldlight mb-5">EXPLORE</div><div class="grid grid-cols-1 gap-3 text-white/65 font-light text-[15px]"><a href="#heritage" class="hover:text-goldlight transition">Our Heritage</a><a href="#destinations" class="hover:text-goldlight transition">Destinations</a><a href="#rooms" class="hover:text-goldlight transition">Rooms & Suites</a><a href="#dining" class="hover:text-goldlight transition">Restaurants</a><a href="#spa" class="hover:text-goldlight transition">Ayurveda & Yoga</a><a href="#offers" class="hover:text-goldlight transition">Weddings & Offers</a></div></div>
+<div><div class="text-[11px] tracking-[0.35em] text-goldlight mb-5">CONTACT • JAIPUR FLAGSHIP</div><div class="text-white/65 font-light text-[15px] space-y-3"><p>Khasa Kothi Circle, MI Road<br>Jaipur 302001, Rajasthan, India</p><p>+91 141 408 0000<br>namaste@rajvilas.in<br>Toll-free 1800 180 1234</p><p class="text-white/45 text-sm">Check-in 14:00 • Check-out 12:00<br>Reception 24×7 • Hindi • English • தமிழ்</p></div></div>
+<div><div class="text-[11px] tracking-[0.35em] text-goldlight mb-5">NEWSLETTER</div><p class="text-white/55 font-light text-sm">Festival openings, new palaces & member presales.</p><div class="flex mt-4"><input id="newsEmail" type="email" placeholder="Email / mobile" class="flex-1 min-w-0 bg-white/10 border border-white/20 rounded-l px-4 py-3 text-sm outline-none focus:border-gold placeholder:text-white/40"><button onclick="subscribeNews()" class="bg-gold text-maroon px-5 rounded-r hover:bg-white transition font-bold">→</button></div><div class="mt-5 bg-white/5 border border-white/10 rounded p-4 text-xs text-white/60">Need help? <button onclick="toggleChat(true)" class="text-goldlight underline">Chat with Priya, our concierge →</button></div></div>
+</div>
+<div class="flex flex-col md:flex-row justify-between items-center gap-3 pt-7 text-[12px] tracking-[0.12em] text-white/40"><span>© 2026 RAJVILĀS PALACES OF INDIA • MADE IN BHARAT 🇮🇳</span><span class="flex gap-6"><a href="#" class="hover:text-white/80">PRIVACY</a><a href="#" class="hover:text-white/80">TERMS</a><a href="#" class="hover:text-white/80">CAREERS</a></span></div>
+</div>
+</footer>
+
+<!-- BOOKING MODAL -->
+<div id="bookingModal" class="fixed inset-0 z-[70] hidden items-center justify-center p-4">
+<div class="absolute inset-0 modal-bg" onclick="closeBooking()"></div>
+<div class="relative bg-[#FFFBF2] w-full max-w-3xl rounded-xl shadow-2xl modal-panel max-h-[92vh] overflow-y-auto no-scrollbar">
+<div class="sticky top-0 bg-gradient-to-r from-maroon to-maroon2 text-white px-6 md:px-8 py-5 flex items-center justify-between rounded-t-xl z-10"><div><div class="text-[10px] tracking-[0.35em] text-goldlight">SECURE RESERVATION • UPI / CARDS / PAY AT HOTEL</div><div class="serif text-2xl">Reserve your palace stay <span class="hindi text-lg text-goldlight">• बुकिंग</span></div></div><button onclick="closeBooking()" class="w-10 h-10 rounded-full border border-white/25 hover:bg-white/10 transition">✕</button></div>
+<div class="px-6 md:px-8 py-6">
+<div class="flex items-center justify-between mb-2" id="stepDots">
+<div class="flex items-center gap-2"><div class="step-dot active" data-s="1">1</div><span class="hidden sm:inline text-xs tracking-widest text-gray-500">DATES</span></div><div class="flex-1 h-px bg-gray-200 mx-2"></div>
+<div class="flex items-center gap-2"><div class="step-dot" data-s="2">2</div><span class="hidden sm:inline text-xs tracking-widest text-gray-500">SUITE</span></div><div class="flex-1 h-px bg-gray-200 mx-2"></div>
+<div class="flex items-center gap-2"><div class="step-dot" data-s="3">3</div><span class="hidden sm:inline text-xs tracking-widest text-gray-500">EXTRAS</span></div><div class="flex-1 h-px bg-gray-200 mx-2"></div>
+<div class="flex items-center gap-2"><div class="step-dot" data-s="4">4</div><span class="hidden sm:inline text-xs tracking-widest text-gray-500">DETAILS</span></div>
+</div>
+<div class="h-1 bg-gray-100 rounded-full overflow-hidden mb-6"><div id="bookProgress" class="h-full bg-gradient-to-r from-saffron to-gold transition-all duration-500" style="width:25%"></div></div>
+<div class="book-step" data-step="1">
+<div class="bg-white rounded border border-gold/30 p-4 mb-4 flex items-center justify-between gap-3"><div><div class="text-[10px] tracking-[0.3em] text-stonewarm">DESTINATION</div><div id="mDestLabel" class="serif text-xl text-maroon">Jaipur — Pink City Palace</div></div><button onclick="document.getElementById('destinations').scrollIntoView({behavior:'smooth'});closeBooking()" class="text-xs tracking-widest text-golddark underline">CHANGE</button></div>
+<div class="grid md:grid-cols-2 gap-4">
+<label class="bg-white rounded border p-4 block"><span class="text-[10px] tracking-[0.3em] text-stonewarm">CHECK-IN</span><input id="mCheckin" type="date" class="w-full serif text-xl mt-1 outline-none"></label>
+<label class="bg-white rounded border p-4 block"><span class="text-[10px] tracking-[0.3em] text-stonewarm">CHECK-OUT</span><input id="mCheckout" type="date" class="w-full serif text-xl mt-1 outline-none"></label>
+</div>
+<div class="grid grid-cols-3 gap-4 mt-4">
+<div class="bg-white rounded border p-4 text-center"><div class="text-[10px] tracking-[0.25em] text-stonewarm">ADULTS</div><div class="flex items-center justify-center gap-3 mt-2"><button onclick="mStep('adults',-1)" class="w-8 h-8 rounded-full border hover:bg-maroon hover:text-white transition">−</button><span id="mAdults" class="font-medium text-lg">2</span><button onclick="mStep('adults',1)" class="w-8 h-8 rounded-full border hover:bg-maroon hover:text-white transition">+</button></div></div>
+<div class="bg-white rounded border p-4 text-center"><div class="text-[10px] tracking-[0.25em] text-stonewarm">CHILDREN</div><div class="flex items-center justify-center gap-3 mt-2"><button onclick="mStep('children',-1)" class="w-8 h-8 rounded-full border hover:bg-maroon hover:text-white transition">−</button><span id="mChildren" class="font-medium text-lg">0</span><button onclick="mStep('children',1)" class="w-8 h-8 rounded-full border hover:bg-maroon hover:text-white transition">+</button></div></div>
+<div class="bg-white rounded border p-4 text-center"><div class="text-[10px] tracking-[0.25em] text-stonewarm">ROOMS</div><div class="flex items-center justify-center gap-3 mt-2"><button onclick="mStep('roomsN',-1)" class="w-8 h-8 rounded-full border hover:bg-maroon hover:text-white transition">−</button><span id="mRooms" class="font-medium text-lg">1</span><button onclick="mStep('roomsN',1)" class="w-8 h-8 rounded-full border hover:bg-maroon hover:text-white transition">+</button></div></div>
+</div>
+<div id="mNightsInfo" class="mt-4 text-center text-sm text-golddark bg-gold/10 border border-gold/40 rounded py-3">Select dates to continue</div>
+</div>
+<div class="book-step hidden" data-step="2"><div class="text-sm text-gray-500 mb-4">Select your suite — live prices for your dates & destination.</div><div id="mRoomsList" class="space-y-3"></div></div>
+<div class="book-step hidden" data-step="3"><div class="text-sm text-gray-500 mb-4">Enhance your yatra. Extras are added to the total.</div><div id="mExtrasList" class="space-y-3"></div>
+<div class="mt-4"><label class="text-[11px] tracking-[0.25em] text-stonewarm">PROMO CODE (TRY DIWALI30 / INDIA25)</label><div class="flex gap-2 mt-2"><input id="promoInput" placeholder="Enter code" class="flex-1 border rounded px-4 py-3 text-sm outline-none focus:border-gold uppercase"><button onclick="applyPromo()" class="bg-maroon text-white px-6 rounded text-xs tracking-[0.2em] hover:bg-gold hover:text-maroon transition">APPLY</button></div><div id="promoMsg" class="text-xs mt-2"></div></div></div>
+<div class="book-step hidden" data-step="4">
+<div class="grid md:grid-cols-2 gap-3"><input id="gName" placeholder="Full name *" class="border rounded px-4 py-3 text-sm outline-none focus:border-gold"><input id="gEmail" type="email" placeholder="Email / Mobile *" class="border rounded px-4 py-3 text-sm outline-none focus:border-gold"><input id="gPhone" placeholder="Phone +91..." class="border rounded px-4 py-3 text-sm outline-none focus:border-gold"><select id="gArrival" class="border rounded px-4 py-3 text-sm outline-none"><option>Arrival ~14:00</option><option>Morning Shatabdi arrival</option><option>Evening flight arrival</option><option>Late night arrival</option></select></div>
+<textarea id="gReq" rows="2" placeholder="Special requests — anniversary, Jain food, high floor, airport pickup..." class="w-full border rounded px-4 py-3 text-sm mt-3 outline-none focus:border-gold"></textarea>
+<div class="grid grid-cols-3 gap-2 mt-3 text-xs"><label class="border rounded p-3 flex items-center gap-2 cursor-pointer"><input type="radio" name="pay" checked class="accent-[#6B1A2A]"> Pay at hotel</label><label class="border rounded p-3 flex items-center gap-2 cursor-pointer"><input type="radio" name="pay" class="accent-[#6B1A2A]"> UPI</label><label class="border rounded p-3 flex items-center gap-2 cursor-pointer"><input type="radio" name="pay" class="accent-[#6B1A2A]"> Card</label></div>
+<div id="priceBreakdown" class="bg-white border rounded p-5 mt-4 text-sm"></div>
+<label class="flex items-start gap-2 mt-3 text-xs text-gray-500"><input id="agreeChk" type="checkbox" class="mt-1"> I agree to the cancellation policy (free until 48h before arrival) and understand no prepayment is taken today.</label>
+</div>
+<div class="book-step hidden text-center py-6" data-step="5">
+<div class="text-6xl">🪔</div><div class="w-16 h-16 mx-auto rounded-full bg-emerald-500 text-white flex items-center justify-center text-3xl -mt-10 border-4 border-[#FFFBF2]">✓</div>
+<h3 class="serif text-4xl text-maroon mt-4">Dhanyavaad — you're booked!</h3><p class="hindi text-golddark text-lg">शुभ यात्रा!</p>
+<p class="text-gray-500 font-light mt-2">Confirmation on SMS + WhatsApp (demo). Show this reference at reception.</p>
+<div class="inline-block mt-5 bg-maroon text-goldlight tracking-[0.3em] px-8 py-4 rounded text-lg font-medium" id="confirmRef">RV-000000</div>
+<div id="confirmSummary" class="text-sm text-gray-600 mt-5 bg-white border rounded p-5 text-left"></div>
+<button onclick="closeBooking()" class="mt-6 text-xs tracking-[0.25em] underline underline-offset-4 text-golddark">BACK TO SITE</button>
+</div>
+<div id="bookNav" class="flex justify-between mt-7"><button id="backBtn" onclick="bookNav(-1)" class="px-7 py-3 text-[12px] tracking-[0.25em] border border-gray-300 rounded hover:border-maroon transition invisible">← BACK</button><button id="nextBtn" onclick="bookNav(1)" class="btn-gold px-10 py-3 text-[12px] tracking-[0.25em] rounded">CONTINUE →</button></div>
+</div>
+</div>
+</div>
+
+<!-- ROOM MODAL -->
+<div id="roomModal" class="fixed inset-0 z-[70] hidden items-center justify-center p-4">
+<div class="absolute inset-0 modal-bg" onclick="closeRoom()"></div>
+<div class="relative bg-white w-full max-w-4xl rounded-xl shadow-2xl modal-panel max-h-[92vh] overflow-y-auto">
+<button onclick="closeRoom()" class="absolute top-4 right-4 z-10 w-10 h-10 bg-maroon/85 text-white rounded-full hover:bg-gold hover:text-maroon transition backdrop-blur">✕</button>
+<div class="grid md:grid-cols-2"><div class="relative min-h-[300px]"><img id="rmImg" src="" class="absolute inset-0 w-full h-full object-cover md:rounded-l-xl" alt="Room"><div id="rmBadge" class="absolute top-4 left-4 bg-gold text-maroon text-[11px] tracking-[0.2em] px-3 py-1.5 rounded-full font-semibold"></div></div>
+<div class="p-7 md:p-9"><div id="rmCat" class="text-[11px] tracking-[0.35em] text-golddark"></div><h3 id="rmName" class="serif text-3xl md:text-4xl text-maroon mt-2 leading-tight"></h3><div id="rmMeta" class="flex flex-wrap gap-x-5 gap-y-1 text-sm text-gray-500 mt-3"></div><div class="flex items-center gap-2 mt-3"><span class="text-gold">★★★★★</span><span id="rmRating" class="text-sm text-gray-500"></span></div><p id="rmDesc" class="text-[15px] font-light text-ink/70 leading-relaxed mt-4"></p><div id="rmAmen" class="flex flex-wrap gap-2 mt-5"></div>
+<div class="flex items-end justify-between mt-7 pt-6 border-t"><div><div id="rmPrice" class="serif text-4xl text-maroon"></div><div class="text-xs text-gray-400">per night • + taxes</div></div><div id="rmTotal" class="text-right text-sm text-golddark"></div></div>
+<div class="grid grid-cols-2 gap-3 mt-6"><button onclick="closeRoom()" class="border border-gray-300 py-3.5 rounded text-[12px] tracking-[0.18em] hover:border-maroon transition">KEEP BROWSING</button><button id="rmBookBtn" class="btn-gold py-3.5 rounded text-[12px] tracking-[0.18em]">BOOK THIS SUITE</button></div></div></div>
+</div>
+</div>
+
+<!-- DOSHA MODAL -->
+<div id="doshaModal" class="fixed inset-0 z-[72] hidden items-center justify-center p-4">
+<div class="absolute inset-0 modal-bg" onclick="closeDosha()"></div>
+<div class="relative bg-ivory w-full max-w-lg rounded-xl shadow-2xl modal-panel p-8 text-center border border-gold/40">
+<button onclick="closeDosha()" class="absolute top-4 right-4 w-9 h-9 rounded-full border hover:bg-maroon hover:text-white transition">✕</button>
+<div class="text-[11px] tracking-[0.35em] text-emerald">AYURVEDIC DOSHA QUIZ</div>
+<h3 class="serif text-3xl text-maroon mt-2">Discover your <em class="gold-text">prakriti</em></h3>
+<div id="doshaBody" class="mt-6 text-left"></div>
+</div>
+</div>
+
+<!-- VIDEO MODAL -->
+<div id="videoModal" class="fixed inset-0 z-[75] hidden items-center justify-center p-4">
+<div class="absolute inset-0 modal-bg" onclick="closeVideo()"></div>
+<div class="relative w-full max-w-4xl modal-panel"><button onclick="closeVideo()" class="absolute -top-12 right-0 text-white/80 hover:text-white tracking-[0.25em] text-xs">CLOSE ✕</button><div class="rounded overflow-hidden shadow-2xl aspect-video bg-black"><iframe id="videoFrame" class="w-full h-full" src="" title="Hotel film" frameborder="0" allow="accelerometer; autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe></div></div>
+</div>
+
+<!-- LIGHTBOX -->
+<div id="lightbox" class="fixed inset-0 z-[75] hidden items-center justify-center p-4">
+<div class="absolute inset-0 bg-[#15040A]/95" onclick="closeLightbox()"></div>
+<button onclick="closeLightbox()" class="absolute top-6 right-6 text-white/70 hover:text-white text-sm tracking-[0.25em] z-10">CLOSE ✕</button>
+<button onclick="lbMove(-1)" class="lightbox-nav absolute left-3 md:left-8 z-10 w-12 h-12 rounded-full border border-white/30 text-white flex items-center justify-center">←</button>
+<button onclick="lbMove(1)" class="lightbox-nav absolute right-3 md:right-8 z-10 w-12 h-12 rounded-full border border-white/30 text-white flex items-center justify-center">→</button>
+<div class="relative max-w-5xl w-full modal-panel"><img id="lbImg" src="" class="w-full max-h-[80vh] object-contain rounded shadow-2xl" alt="Gallery"><div class="text-center text-white/60 text-xs tracking-[0.3em] mt-4"><span id="lbCount">1 / 8</span> • <span id="lbCap"></span></div></div>
+</div>
+
+<!-- CHAT -->
+<button id="chatFab" onclick="toggleChat()" class="fixed bottom-6 right-6 z-[65] w-16 h-16 rounded-full bg-maroon text-goldlight shadow-[0_15px_40px_-10px_rgba(61,11,22,.7)] border border-gold/60 flex items-center justify-center hover:bg-gold hover:text-maroon transition">🪷<span class="absolute -top-1 -right-1 w-5 h-5 bg-emerald-500 border-2 border-ivory rounded-full"></span></button>
+<div id="chatPanel" class="fixed bottom-24 right-4 md:right-6 z-[65] w-[calc(100vw-2rem)] max-w-[380px] bg-cream rounded-xl shadow-2xl border border-sand overflow-hidden hidden flex-col" style="height:520px;max-height:70vh;">
+<div class="bg-gradient-to-r from-maroon to-maroon2 text-white p-4 flex items-center gap-3"><img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=200&auto=format&fit=crop" class="w-11 h-11 rounded-full object-cover border-2 border-gold" alt="Concierge"><div class="flex-1"><div class="font-medium text-[15px]">Priya • Concierge <span class="hindi text-xs text-goldlight">नमस्ते</span></div><div class="text-[11px] text-emerald-300 flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> Online — replies instantly • Hindi + English</div></div><button onclick="toggleChat(false)" class="text-white/60 hover:text-white">✕</button></div>
+<div id="chatBody" class="flex-1 overflow-y-auto p-4 space-y-3 text-sm"></div>
+<div class="px-3 pb-2 flex gap-2 flex-wrap" id="chatChips"></div>
+<div class="p-3 bg-white border-t flex gap-2"><input id="chatInput" placeholder="Ask: price? Taj tour? visa? Diwali?" class="flex-1 bg-cream rounded-full px-4 py-2.5 text-sm outline-none focus:ring-1 focus:ring-gold" onkeydown="if(event.key==='Enter')sendChat()"><button onclick="sendChat()" class="w-10 h-10 rounded-full bg-maroon text-goldlight hover:bg-gold hover:text-maroon transition flex items-center justify-center">→</button></div>
+</div>
+
+<div id="toasts" class="fixed top-24 right-4 md:right-6 z-[80] space-y-3 w-[calc(100vw-2rem)] max-w-sm"></div>
+<button id="toTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" class="fixed bottom-6 left-6 z-[60] w-12 h-12 rounded-full bg-white shadow-xl border border-sand text-maroon hidden items-center justify-center hover:bg-maroon hover:text-goldlight transition">↑</button>
+
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script src="assets/js/site.js"></script>
+</body>
+</html>
