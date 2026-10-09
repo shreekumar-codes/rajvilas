@@ -7,7 +7,6 @@ let LANG='EN';
 
 const DESTS=[
 {t:'Jaipur — Pink City Palace',hindi:'जयपुर',img:'https://images.unsplash.com/photo-1599661046289-e31897846e41?q=80&w=800&auto=format&fit=crop',temp:'32°C ☀',best:'Oct – Mar',from:14500,desc:'Hawa Mahal views, fort dinners & bazaar walks.'},
-{t:'Udaipur — Lake Pichola Palace',hindi:'उदयपुर',img:'https://images.unsplash.com/photo-1568495286055-117eb4db0b74?q=80&w=800&auto=format&fit=crop',temp:'30°C ☀',best:'Sep – Feb',from:18900,desc:'Lake-view suites, sunset boat aarti & weddings.'},
 {t:'Goa — Beach Resort & Spa',hindi:'गोवा',img:'https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?q=80&w=800&auto=format&fit=crop',temp:'29°C 🌊',best:'Nov – Feb',from:16500,desc:'Private beach, beach shacks & susegad spa.'},
 {t:'Kerala — Backwater Retreat',hindi:'केरल',img:'https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?q=80&w=800&auto=format&fit=crop',temp:'28°C 🌴',best:'Aug – Mar',from:19800,desc:'Houseboats, Ayurveda & toddy-shop trails.'},
 {t:'Agra — Taj View Haveli',hindi:'आगरा',img:'https://images.unsplash.com/photo-1564507592333-c60657eea523?q=80&w=800&auto=format&fit=crop',temp:'33°C ☀',best:'Oct – Mar',from:12900,desc:'Taj-view terraces, Mughlai kitchens & day trips.'},
